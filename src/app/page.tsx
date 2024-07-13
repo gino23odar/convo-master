@@ -14,8 +14,11 @@ export default function Home() {
   const [session, setSesssion] = React.useState<string | null>(null)
   //const userCheck = sessionStorage.getItem('user')
   //const userSession = userCheck ? JSON.parse(userCheck) : null;
-
+  
   console.log(user)
+
+  const UID : string = user?.uid!
+  console.log(typeof(UID))
   //console.log(userCheck)
   //console.log(userSession)
 
@@ -54,7 +57,7 @@ export default function Home() {
       </div>
 
       <div className="flex w-full mt-2 p-2  rounded-lg h-100% bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center">
-        <Upload />
+        <Upload uid={UID} />
       </div>
     </main>
   );
