@@ -6,9 +6,21 @@ import { collection, addDoc } from 'firebase/firestore'
 
 interface UploadProps {
     uid: string;
-  }
+}
+
+function checkTopic(topic: string){
+    if(topic.length < 3){
+        alert('Topic must be at least 3 characters long');
+        return false;
+    }
+    return true;
+}
 
 async function handleUpload({uid, topic, question, answer}: {uid:string, topic: string, question: string, answer: string}) {
+    if(!checkTopic(topic)){
+        return false;
+    }
+
     try{
         const docRef = await addDoc(collection(db, "users"), {
             uid: uid,

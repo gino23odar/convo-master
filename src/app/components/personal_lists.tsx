@@ -2,46 +2,56 @@ import {db} from '@/app/firebase/config'
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import Accordion from './Accordion';
+import exp from 'constants';
 
-async function fetchDataFromFirestore(){
-    const querySnapshot = await getDocs(collection(db, 'users'))
-    const data: any[] = [];
-    querySnapshot.forEach((doc) => {
-        data.push({id: doc.id, ...doc.data()})
-    })
-    return data
+
+interface PersonalListsProps {
+    data: any[];
 }
 
-export default function PersonalLists() {
-    const [data, setData] = useState<any[]>([])
+// async function fetchDataFromFirestore(){
+//     const querySnapshot = await getDocs(collection(db, 'users'))
+//     const data: any[] = [];
+//     querySnapshot.forEach((doc) => {
+//         data.push({id: doc.id, ...doc.data()})
+//     })
+//     return data
+// }
+
+const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
+    const [list, setList] = React.useState<string>('');
+    const [entry, setEntry] = React.useState<string[]>([]);
+
+    let topics = data.map((item) => item.topic);
+    //console.log(topics);
+
+    const handleTopic = (topic: string) => {
+        setList(topic);
+    }
+    //console.log(list)
+
+    const filterByTopic = (data: any[], topic: string) => {
+        const filtered:string[] = data.filter((item) => item.topic === topic);
+        setEntry(filtered);
+    }
+
+    //console.log(entry);
 
     useEffect(() => {
-        async function fetchData(){
-            const data = await fetchDataFromFirestore()
-            setData(data)
-        }
-        fetchData()
-    }, [])
-    console.log(data)
+        filterByTopic(data, list);
+    }, [list, data])
 
     return (
         <div>
-            <h1>Personal Lists</h1>
-            <div>
-                {/* {data.map((user) => (
-                    <div key={user.id} className='mb-4'>
-                        <p className='text-2xl font-bold'>
-                            {user.topic}
-                        </p>
-                        <p className='text-xl'> 
-                            {user.question}
-                        </p>
-                        <p className='text-xl'> 
-                            {user.answer}
-                        </p>
-                    </div>
-                ))} */}
-                <Accordion data={data} />
+            <div className='w-full px-4 overflow-auto'>
+                { topics.map((val, index) => (
+                    <button key={index} className='px-4 py-2 bg-blue-500 m-2 text-white rounded' onClick={()=>handleTopic(val)}>
+                        {val}
+                    </button>
+                ))}
+            </div>
+            <div className='mr-4'>
+                <Accordion entry={entry}/>
             </div>
             <div id="accordion-collapse" data-accordion="collapse">
                 <h2 id="accordion-collapse-heading-1">
@@ -62,3 +72,5 @@ export default function PersonalLists() {
         </div>
     )
 }
+
+export default PersonalLists
