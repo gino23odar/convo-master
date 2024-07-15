@@ -62,17 +62,17 @@ const Accordion: React.FC<AccordionProps> = ({ entry }) =>{
 
             {
                 entry && Object.entries(entry).map(([index, entry]) => (
-                    <div key={index} className='mb-2'>
-                        <button onClick={() => handleToggle(index)} className='flex items-center justify-between p-2 mt-2 mx-2 w-full font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 first:rounded-t-xl last:rounded-b-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3'>
+                    <div key={index} tabIndex={0} className='first:rounded-t-xl last:rounded-b-xl flex items-center justify-between p-2  mx-2 w-full font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'>
+                        <button onClick={() => handleToggle(index)} className='flex items-center justify-between w-full'>
                             <p className='font-bold sm:text-2xl'>
                                 {entry.question}
                             </p>
-                            <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <svg data-accordion-icon className="w-3 h-3 ml-auto rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
                             </svg>
                         </button>
                         {activeQuestion === index && (
-                            <div className='p-2 w-full border border-b-0 mx-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900'>
+                            <div className='p-2 w-full border border-b-0 rounded-xl mx-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900'>
                                 <p>{entry.answer}</p>
                             </div>
                         )}
