@@ -6,6 +6,7 @@ import { collection, addDoc } from 'firebase/firestore'
 
 interface UploadProps {
     uid: string;
+    data: any[];
 }
 
 function checkTopic(topic: string){
@@ -36,10 +37,11 @@ async function handleUpload({uid, topic, question, answer}: {uid:string, topic: 
     }
 }
 
-const Upload : React.FC<UploadProps> = ({uid}) => {
+const Upload : React.FC<UploadProps> = ({uid, data}) => {
     const [topic, setTopic] = React.useState<string>('');
     const [answer, setAnswer] = React.useState<string>('');
     const [question, setQuestion] = React.useState<string>('');
+    const [searchQuery, setSearchQuery] = React.useState<string>('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -53,17 +55,38 @@ const Upload : React.FC<UploadProps> = ({uid}) => {
         }
     }
 
+    let topics = Array.from(new Set(data.map((item) => item.topic.toLowerCase())));
+    //console.log(topics)
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+      };
+    
+
 
     return(
         <div className='w-full p-2'>
             <form onSubmit={handleSubmit} className="max-w-screen-md mx-auto p-4 bg-white shadow-lg rounded">
                 <div className=' mt-2'>
                     <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Topic</label>
-                    <input type="text" value={topic} onChange={(e) => setTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" /> 
+                    <div className='flex pb-2 gap-2'>
+                        <select value={topic} onChange={(e) => setTopic(e.target.value)} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring'>
+                            <option value='newTopic'>New Topic</option>
+                            {topics.map((val, index) => (
+                                <option key={index} value={val}>{val}</option>
+                            ))}
+                        </select>
+                        { !topics.includes(topic.toLowerCase()) ? <input type="text" ref={null} placeholder='Enter New Topic' value={topic == 'newTopic'? 'Enter new Topic' : topic} onChange={(e) => setTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" /> : null }
+                    </div>
+
                     <label htmlFor="question" className="block text-gray-700 text-sm font-bold mb-2">Question</label>
                     <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" />
+
+                    <input type='text' value={searchQuery} onChange={handleInputChange} placeholder="Questions..." className='border rounded'/>
+
                     <label htmlFor="answer" className="block text-gray-700 text-sm font-bold mb-2">Answer</label>
                     <textarea rows={3} id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" />
+
                     <div className="text-center">
                         <button type='submit' className='bg-indigo-300 hover:bg-sky-600 text-white font-bold px-2 rounded-lg'>
                             Upload

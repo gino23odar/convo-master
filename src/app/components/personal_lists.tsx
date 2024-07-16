@@ -50,7 +50,7 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
                     </button>
                 ))}
             </div>
-            <div className='mr-4'>
+            <div className='mr-4 mt-1'>
                 <Accordion entry={entry}/>
             </div>
         </div>

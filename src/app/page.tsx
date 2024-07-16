@@ -83,7 +83,7 @@ export default function Home() {
           </li>
         </ul>
       </nav>
-      <div className="flex flex-col min-h-[50lvh] w-full pt-2 bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
+      <div className="flex flex-col min-h-[40lvh] w-full pt-2 bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
         <h1 className="text-black font-bold text-2xl text-center bg-white rounded-lg m-2 h-100% justify- items-center"> Select your personal list:</h1>
         <div >
           {loading ? (
@@ -97,7 +97,7 @@ export default function Home() {
       </div>
 
       <div className="flex w-full mt-2 p-2  rounded-lg h-100% bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center">
-        <Upload uid={UID} />
+        <Upload uid={UID} data={data} />
       </div>
     </main>
   );

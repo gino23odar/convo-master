@@ -33,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({ entry }) =>{
         setActiveQuestion(activeQuestion === index ? null : index);
     }
 
-    console.log(activeQuestion)
+    //console.log(activeQuestion)
 
     useEffect(() => {
       setActiveQuestion(null)
