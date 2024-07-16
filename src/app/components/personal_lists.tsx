@@ -23,7 +23,7 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
     const [entry, setEntry] = React.useState<string[]>([]);
 
     let topics = Array.from(new Set(data.map((item) => item.topic)));
-    console.log(topics);
+    //console.log(topics);
 
     const handleTopic = (topic: string) => {
         setList(topic);
@@ -35,7 +35,7 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
         setEntry(filtered);
     }
 
-    console.log(entry);
+    //console.log(entry);
 
     useEffect(() => {
         filterByTopic(data, list);

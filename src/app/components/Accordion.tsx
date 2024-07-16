@@ -33,6 +33,8 @@ const Accordion: React.FC<AccordionProps> = ({ entry }) =>{
         setActiveQuestion(activeQuestion === index ? null : index);
     }
 
+    console.log(activeQuestion)
+
     useEffect(() => {
       setActiveQuestion(null)
     }, [entry])
@@ -40,43 +42,23 @@ const Accordion: React.FC<AccordionProps> = ({ entry }) =>{
 
     return(
         <div>
-            {/* { Object.entries(groupedData).map(([topic, items]) => (
-                <div key={topic} className='mb-2 border rounded-md bg-gray-200 hover:bg-gray-300'>
-                    <button onClick={() => handleToggle(topic)} className='w-full p-2'>
-                        <p className='font-bold text-black sm:text-2xl'>
-                            {topic}
-                        </p>
-                    </button>
-                    {activeTopic === topic && (
-                        <div>
-                            {items.map((item: DataItem) => (
-                                <div key={item.id} className='p-2'>
-                                    <p className='font-bold'>{item.question}</p>
-                                    <p>{item.answer}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            ))} */}
-
             {
                 entry && Object.entries(entry).map(([index, entry]) => (
-                    <div key={index} tabIndex={0} className='first:rounded-t-xl last:rounded-b-xl flex items-center justify-between p-2  mx-2 w-full font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'>
-                        <button onClick={() => handleToggle(index)} className='flex items-center justify-between w-full'>
-                            <p className='font-bold sm:text-2xl'>
+                    <button onClick={() => handleToggle(index)} key={index} tabIndex={0} className='first:rounded-t-xl last:rounded-b-xl flex items-center justify-between p-2  mx-2 w-full font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'>
+                        <div className={`flex items-center justify-between w-full ${ activeQuestion === index ? 'box' : ''}`}>
+                            <p className='font-bold sm:text-2xl flex-grow'>
                                 {entry.question}
                             </p>
-                            <svg data-accordion-icon className="w-3 h-3 ml-auto rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <svg data-accordion-icon className={`w-3 h-3 ml-2 shrink-0 transition-transform duration-500 ${ activeQuestion === index ? 'rotate-0' : 'rotate-180'}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
                             </svg>
-                        </button>
+                        </div>
                         {activeQuestion === index && (
-                            <div className='p-2 w-full border border-b-0 rounded-xl mx-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900'>
+                            <div className={`p-2 w-full border border-b-0 rounded-xl mx-2 border-gray-200 dark:border-gray-700 dark:bg-gray-900 `}>
                                 <p>{entry.answer}</p>
                             </div>
                         )}
-                    </div>
+                    </button>
                 ))
             }
         </div>

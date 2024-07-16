@@ -31,3 +31,20 @@ body {
     text-wrap: balance;
   }
 }
+
+.box {
+  animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(25%) scale3d(0.9,0.9,1);
+  }
+  50% {
+    transform: translateX(-5%) scale3d(1.2,1.2,1);
+  }
+  100% {
+    transform: translateX(0) scale3d(1,1,1);
+  }
+}
+
