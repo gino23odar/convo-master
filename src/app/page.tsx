@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import Upload from "./db/upload";
 import PersonalLists from "./components/personal_lists";
+import Navbar from "./components/Navbar";
 
 async function fetchDataFromFirestore(uid: string) {
   const q = query(collection(db, 'users'), where('uid', '==', uid));
@@ -28,17 +29,8 @@ export default function Home() {
   const [data, setData] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
-  //const userCheck = sessionStorage.getItem('user')
-  //const userSession = userCheck ? JSON.parse(userCheck) : null;
-  
-  //console.log(user)
-  //console.log(user?.displayName)
 
   const UID : string | undefined = user?.uid!
-  //console.log(UID)
-  //console.log(data)
-  //console.log(userCheck)
-  //console.log(userSession)
 
   // update the user session to render the page if the user is logged in
   useEffect(() => {
@@ -69,20 +61,7 @@ export default function Home() {
   
   return (
     <main className="flex min-h-screen flex-col w-full items-center p-2">
-      
-      <nav className="flex flex-row items-center bg-slate-300 rounded-lg p-2 w-full flex-wrap">
-        <button className="bg-red-600 rounded-lg p-2 w-full" onClick={() => {
-          signOut(auth)
-          sessionStorage.removeItem('user')
-        }}>
-          Log out
-        </button>
-        <ul className="flex flex-col items-center justify-between p-2 w-full">
-          <li>
-            <h1 className="text-xl sm:text-2xl font-bold text-black text-center break-words">Welcome {user?.displayName || user?.email}!</h1>
-          </li>
-        </ul>
-      </nav>
+      <Navbar text={user?.displayName || user?.email!} />
       <div className="flex flex-col min-h-[40lvh] w-full pt-2 bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
         <h1 className="text-black font-bold text-2xl text-center bg-white rounded-lg m-2 h-100% justify- items-center"> Select your personal list:</h1>
         <div >

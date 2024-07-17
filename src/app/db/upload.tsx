@@ -11,6 +11,7 @@ interface UploadProps {
     data: any[];
 }
 
+// check if the topic is at least 3 characters long
 function checkTopic(topic: string){
     if(topic.length < 3){
         alert('Topic must be at least 3 characters long');
@@ -58,8 +59,8 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
         }
     }
 
+    // get a list of unique topics
     let topics = Array.from(new Set(data.map((item) => item.topic.toLowerCase())));
-    //console.log(topics)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -68,6 +69,7 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
     
     //const filteredQuestions = data.filter((item) => item.question.toLowerCase().includes(searchQuery.toLowerCase()));
 
+    // filter questions by topic and search query
     const filterQuestions = (data: any[], topic:string, query: string) => {
         let filtered = data.filter((item) => item.topic.toLowerCase().includes(topic.toLowerCase()));
         const filteredQs = filtered.filter((item) => item.question.toLowerCase().includes(query.toLowerCase()));
@@ -77,8 +79,6 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
     useEffect(() => {
         filterQuestions(data, topic, searchQuery);
     }, [data, searchQuery, topic])
-    // console.log(filteredQuestions)
-
 
     return(
         <div className='w-full p-2'>

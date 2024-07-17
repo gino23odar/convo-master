@@ -11,20 +11,17 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
     const [list, setList] = React.useState<string>('');
     const [entry, setEntry] = React.useState<string[]>([]);
 
+    // filter out any duplicate topics
     let topics = Array.from(new Set(data.map((item) => item.topic)));
-    //console.log(topics);
 
     const handleTopic = (topic: string) => {
         setList(topic);
     }
-    //console.log(list)
 
     const filterByTopic = (data: any[], topic: string) => {
         const filtered:string[] = data.filter((item) => item.topic === topic);
         setEntry(filtered);
     }
-
-    //console.log(entry);
 
     useEffect(() => {
         filterByTopic(data, list);
