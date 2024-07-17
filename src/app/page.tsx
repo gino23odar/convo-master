@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Upload from "./db/upload";
 import PersonalLists from "./components/personal_lists";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 async function fetchDataFromFirestore(uid: string) {
   const q = query(collection(db, 'users'), where('uid', '==', uid));
@@ -60,24 +61,28 @@ export default function Home() {
   }, [user,UID]);
   
   return (
-    <main className="flex min-h-screen flex-col w-full items-center p-2">
+    <>
       <Navbar text={user?.displayName || user?.email!} />
-      <div className="flex flex-col min-h-[40lvh] w-full pt-2 bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
-        <h1 className="text-black font-bold text-2xl text-center bg-white rounded-lg m-2 h-100% justify- items-center"> Select your personal list:</h1>
-        <div >
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            <PersonalLists data={data} />
-          )}
+      <main className="flex flex-col w-full items-center p-2">
+        <div className="flex flex-col min-h-[40lvh] w-full pt-2 bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
+          <h1 className="text-black font-bold text-2xl text-center bg-white rounded-lg m-2 h-100% justify- items-center"> Select your personal list:</h1>
+          <div >
+            {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              <PersonalLists data={data} />
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="flex w-full mt-2 p-2  rounded-lg h-100% bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center">
-        <Upload uid={UID} data={data} />
-      </div>
-    </main>
+        <div className="flex w-full mt-2 p-2  rounded-lg h-100% bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center">
+          <Upload uid={UID} data={data} />
+        </div>
+      </main>
+      <Footer />
+    </>
+    
   );
 }
