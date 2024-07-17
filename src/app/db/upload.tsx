@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {db} from '@/app/firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
@@ -42,6 +42,7 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
     const [answer, setAnswer] = React.useState<string>('');
     const [question, setQuestion] = React.useState<string>('');
     const [searchQuery, setSearchQuery] = React.useState<string>('');
+    const [filteredQuestions, setFilteredQuestions] = React.useState<{ question: string }[]>([]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -60,8 +61,21 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
-      };
+        setQuestion(e.target.value);
+    };
     
+    //const filteredQuestions = data.filter((item) => item.question.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const filterQuestions = (data: any[], topic:string, query: string) => {
+        let filtered = data.filter((item) => item.topic.toLowerCase().includes(topic.toLowerCase()));
+        const filteredQs = filtered.filter((item) => item.question.toLowerCase().includes(query.toLowerCase()));
+        setFilteredQuestions(filteredQs);
+    }
+
+    useEffect(() => {
+        filterQuestions(data, topic, searchQuery);
+    }, [data, searchQuery, topic])
+    // console.log(filteredQuestions)
 
 
     return(
@@ -80,14 +94,19 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
                     </div>
 
                     <label htmlFor="question" className="block text-gray-700 text-sm font-bold mb-2">Question</label>
-                    <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" />
-
-                    <input type='text' value={searchQuery} onChange={handleInputChange} placeholder="Questions..." className='border rounded'/>
-
+                    
+                    <div className='mb-2'>
+                        <input type='text' value={searchQuery} onChange={handleInputChange} placeholder="Questions..." className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring'/>
+                        <ul className='text-white absolute'>
+                            {searchQuery.length > 1 && filteredQuestions.map((item, index) => (
+                                <li key={index} className='bg-gray-500 opacity-75 last:rounded-b-lg'>{item.question}</li>
+                            ))}
+                        </ul>
+                    </div>
                     <label htmlFor="answer" className="block text-gray-700 text-sm font-bold mb-2">Answer</label>
                     <textarea rows={3} id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" />
 
-                    <div className="text-center">
+                    <div className="text-center pt-2">
                         <button type='submit' className='bg-indigo-300 hover:bg-sky-600 text-white font-bold px-2 rounded-lg'>
                             Upload
                         </button>
