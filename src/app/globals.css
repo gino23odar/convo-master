@@ -48,3 +48,42 @@ body {
   }
 }
 
+.radial-gradient{
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 60%
+  ), rgb(14, 94, 223);
+}
+
+.linear-mask{
+  mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
+  -webkit-mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
+}
+
+.linear-overlay{
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.1) calc(var(--x) + 20%),
+    rgba(255, 255, 255, 0.5) calc(var(--x) + 25%),
+    rgba(255, 255, 255, 0.1) calc(var(--x) + 100%)
+  );
+  mask: 
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  -webkit-mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}

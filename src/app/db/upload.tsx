@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import {db} from '@/app/firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
 
+import SpecialButton from '@/app/components/specialButton'
+
 interface UploadProps {
     uid: string;
     data: any[];
@@ -84,7 +86,7 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
                 <div className=' mt-2'>
                     <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Topic</label>
                     <div className='flex pb-2 gap-2'>
-                        <select value={topic} onChange={(e) => setTopic(e.target.value)} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring'>
+                        <select value={topic} onChange={(e) => setTopic(e.target.value)} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring' required>
                             <option value='newTopic'>New Topic</option>
                             {topics.map((val, index) => (
                                 <option key={index} value={val}>{val}</option>
@@ -96,7 +98,7 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
                     <label htmlFor="question" className="block text-gray-700 text-sm font-bold mb-2">Question</label>
                     
                     <div className='mb-2'>
-                        <input type='text' value={searchQuery} onChange={handleInputChange} placeholder="Questions..." className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring'/>
+                        <input type='text' value={searchQuery} onChange={handleInputChange} placeholder="Questions..." className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring' required/>
                         <ul className='text-white absolute'>
                             {searchQuery.length > 1 && filteredQuestions.map((item, index) => (
                                 <li key={index} className='bg-gray-500 opacity-75 last:rounded-b-lg'>{item.question}</li>
@@ -104,12 +106,10 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
                         </ul>
                     </div>
                     <label htmlFor="answer" className="block text-gray-700 text-sm font-bold mb-2">Answer</label>
-                    <textarea rows={3} id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" />
+                    <textarea rows={3} id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" required/>
 
                     <div className="text-center pt-2">
-                        <button type='submit' className='bg-indigo-300 hover:bg-sky-600 text-white font-bold px-2 rounded-lg'>
-                            Upload
-                        </button>
+                        <SpecialButton text='Upload'/>
                     </div>
                 </div>
             </form>

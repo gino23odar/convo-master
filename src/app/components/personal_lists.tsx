@@ -1,22 +1,11 @@
-import {db} from '@/app/firebase/config'
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
 import Accordion from './Accordion';
-import exp from 'constants';
+import SpecialButton from './specialButton';
 
 
 interface PersonalListsProps {
     data: any[];
 }
-
-// async function fetchDataFromFirestore(){
-//     const querySnapshot = await getDocs(collection(db, 'users'))
-//     const data: any[] = [];
-//     querySnapshot.forEach((doc) => {
-//         data.push({id: doc.id, ...doc.data()})
-//     })
-//     return data
-// }
 
 const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
     const [list, setList] = React.useState<string>('');
@@ -43,11 +32,11 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
 
     return (
         <div>
-            <div className='w-full px-4 overflow-auto'>
-                { topics.map((val, index) => (
-                    <button key={index} className='px-4 py-2 bg-blue-500 m-2 text-white rounded' onClick={()=>handleTopic(val)}>
-                        {val}
-                    </button>
+            <div className='flex w-full px-4 overflow-auto'>
+                { topics.map((val:string, index) => (
+                    <div key={index} className='m-2' onClick={()=>handleTopic(val)}>
+                        <SpecialButton text={val}/>
+                    </div>
                 ))}
             </div>
             <div className='mr-4 mt-1'>
