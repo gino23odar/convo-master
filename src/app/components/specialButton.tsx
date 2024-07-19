@@ -16,7 +16,7 @@ const SpecialButton: React.FC<SpecialButtonProps> = ({text}) => {
         <span className='text-neutral-100 tracking-wide font-bold h-full w-full block relative linear-mask'>
             {text}
         </span>
-        <span className='block absolute inset-0 rounded-md p-px linear-overlay'/>
+        <span className='block absolute inset-0 rounded-md p-0.5 linear-overlay'/>
     </motion.button>
   );
 };

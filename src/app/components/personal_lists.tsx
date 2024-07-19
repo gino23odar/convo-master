@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Accordion from './Accordion';
 import SpecialButton from './specialButton';
+import { helpTopic } from '../constants';
 
 
 interface PersonalListsProps {
@@ -17,11 +18,13 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
     const handleTopic = (topic: string) => {
         setList(topic);
     }
-
+    console.log('help', helpTopic)
     const filterByTopic = (data: any[], topic: string) => {
         const filtered:string[] = data.filter((item) => item.topic === topic);
+        console.log('filtered',filtered)
         setEntry(filtered);
     }
+    console.log('entry', entry)
 
     useEffect(() => {
         filterByTopic(data, list);

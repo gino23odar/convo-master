@@ -17,8 +17,8 @@ const Navbar: React.FC<NavbarProps> = ({text}) => {
           width={100} 
           height={100} 
         />
-        <nav className="flex flex-row items-center bg-white rounded-r-lg p-2 w-full flex-wrap">
-            <button className="bg-red-600 rounded-lg p-2 w-full" onClick={() => {
+        <nav className="flex flex-row items-center bg-white rounded-r-lg p-2 w-full justify-center flex-wrap">
+            <button className="bg-red-600 rounded-lg p-2 w-40 sm:w-full" onClick={() => {
             signOut(auth)
             sessionStorage.removeItem('user')
             }}>
