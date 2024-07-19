@@ -1,6 +1,7 @@
 import React from 'react'
 import { auth } from '@/app/firebase/config';
 import { signOut } from 'firebase/auth';
+import Image from 'next/image';
 
 interface NavbarProps {
     text: string;
@@ -8,8 +9,15 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({text}) => {
   return (
-    <div className='px-2 pt-2'>
-        <nav className="flex flex-row items-center bg-slate-300 rounded-lg p-2 w-full flex-wrap">
+    <div className='flex gap-2 px-2 pt-2'>
+        <Image 
+          src="/logo1024.png" 
+          alt="logo" 
+          className='rounded-l-lg'
+          width={100} 
+          height={100} 
+        />
+        <nav className="flex flex-row items-center bg-white rounded-r-lg p-2 w-full flex-wrap">
             <button className="bg-red-600 rounded-lg p-2 w-full" onClick={() => {
             signOut(auth)
             sessionStorage.removeItem('user')
@@ -25,7 +33,5 @@ const Navbar: React.FC<NavbarProps> = ({text}) => {
     </div>
   )
 }
-
-Navbar.propTypes = {}
 
 export default Navbar
