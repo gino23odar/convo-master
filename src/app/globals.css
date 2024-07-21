@@ -220,3 +220,12 @@ body {
   z-index: 2;
   filter: invert(61%) sepia(27%) saturate(1581%) hue-rotate(149deg) brightness(104%) contrast(104%);
 }
+
+.menu span{
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: white;
+  margin: 3px 0;
+  transition: .5s;
+}
