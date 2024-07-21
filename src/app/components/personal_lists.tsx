@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Accordion from './Accordion';
 import SpecialButton from './specialButton';
+import Reveal from '@/app/utils/Reveal';
 
 interface PersonalListsProps {
     data: any[];
@@ -28,13 +29,16 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
 
     return (
         <div>
-            <div className='flex w-full px-4 overflow-auto'>
-                { topics.map((val:string, index) => (
-                    <div key={index} className='m-2' onClick={()=>handleTopic(val)}>
-                        <SpecialButton text={val}/>
-                    </div>
-                ))}
-            </div>
+            <Reveal>
+                <div className='flex w-full px-4 overflow-auto'>
+                    { topics.map((val:string, index) => (
+                        <div key={index} className='m-2' onClick={()=>handleTopic(val)}>
+                            <SpecialButton text={val}/>
+                        </div>
+                    ))}
+                </div>
+            </Reveal>
+            
             <div className='mr-4 mt-1'>
                 <Accordion entry={entry}/>
             </div>

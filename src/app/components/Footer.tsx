@@ -1,6 +1,7 @@
 import React from 'react'
 import { socialMedia } from '../constants';
 import Image from 'next/image'
+import Reveal from '../utils/Reveal';
 
 const Footer = () => {
   return (
@@ -15,27 +16,30 @@ const Footer = () => {
                 CONVO-MASTER // CONVERSATIONALIST
               </h2>
             </div>
-            <div className="flex flex-row justify-between items-center md:mt-0 mt-2">
-              <ul className='flex relative animated-list'>
-                {socialMedia.map((social, index) => (
-                  <li key={index}>
-                    <div className='flex items-center'>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <Image
-                      key={social.id}
-                      src={social.icon}
-                      alt={social.id}
-                      className={`w-[47px] h-[45px] object-contain cursor-pointer svg-color`}
-                      onClick={() => window.open(social.link)}
-                      />
-                    </div> 
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Reveal>
+              <div className="flex flex-row justify-between items-center md:mt-0 mt-2">
+                <ul className='flex relative animated-list'>
+                  {socialMedia.map((social, index) => (
+                    <li key={index}>
+                      <div className='flex items-center'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <Image
+                        key={social.id}
+                        src={social.icon}
+                        alt={social.id}
+                        className={`w-[47px] h-[45px] object-contain cursor-pointer svg-color`}
+                        onClick={() => window.open(social.link)}
+                        />
+                      </div> 
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            
           </div>
         </div>
     </div>

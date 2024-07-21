@@ -229,3 +229,25 @@ body {
   margin: 3px 0;
   transition: .5s;
 }
+
+/* .coverBars{
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  right:0;
+  background: var(--clr-neon);
+  z-index: 20;
+} */
+
+/* <motion.div
+            variants={{
+                start: {left:0},
+                end: {left:'100%'}
+            }}
+            initial="start"
+            animate={slideControl}
+            transition ={{ duration: 2, ease: "easeIn", delay: 1.5}}
+            className='coverBars'
+        >
+        </motion.div> */
