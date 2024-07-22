@@ -7,7 +7,7 @@ interface RevealProps {
     delayed?: number;
 }
 
-const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed = 1.5}) => {
+const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed = 1}) => {
     const ref = useRef(null);
     const inView = useInView(ref, {once: true});
 

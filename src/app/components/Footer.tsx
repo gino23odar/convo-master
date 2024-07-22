@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className='flex p-2 min-h-[10lvh]'>
         <div className='w-full bg-white bg-opacity-10 rounded'>
-          <Reveal>
+          <Reveal delayed={0.5}>
             <div className="w-full flex justify-between items-center md:flex-row flex-col p-6 border-t-[1px] border-t-[#3F3E45] rounded-lg">
               <div className='rounded-l-lg overflow-hidden'>
                 <Image src="/logo1024.png" alt="logo" width={100} height={100} />
