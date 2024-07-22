@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, use } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
 
 interface RevealProps {
@@ -12,14 +12,12 @@ const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed
     const inView = useInView(ref, {once: true});
 
     const controls = useAnimation();
-    const slideControl = useAnimation();
 
     useEffect(() => {
         if(inView){
             controls.start("end");
-            slideControl.start("end");
         }
-    }, [inView, controls, slideControl])
+    }, [inView, controls])
 
 
   return (
