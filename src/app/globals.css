@@ -17,7 +17,7 @@
     --clr-neon: #04d9ff;
     --clr-neon-rgb: 4,217,255;
     --clr-txt: violet;
-    --clr-txt-rgb: 238,130,238;
+    --clr-txt-rgb: 173,9,173;
   }
 }
 
@@ -58,7 +58,7 @@ body {
     circle at 50% 0%,
     rgba(255, 255, 255, 0.1) 0%,
     transparent 60%
-  ), rgb(14, 94, 223);
+  ), rgb(var(--clr-txt-rgb));
 }
 
 .linear-mask{
@@ -302,7 +302,7 @@ body {
 }
 
 .btn-3:hover{
-  box-shadow: -20px 10px 20px var(--clr-txt-rgb);
+  box-shadow: -20px 10px 20px var(--clr-txt);
   top: -15px;
   left: 15px;
   z-index: 22;

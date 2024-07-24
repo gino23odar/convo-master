@@ -22,6 +22,9 @@ const config: Config = {
       animation: {
         wiggle: 'wiggle 1s ease-in-out ',
       },
+      colors:{
+        neon: `rgb(var(--clr-neon-rgb))`
+      },
     },
   },
   plugins: [],
