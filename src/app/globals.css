@@ -15,7 +15,9 @@
     --background-end-rgb: 0, 0, 0;
     
     --clr-neon: #04d9ff;
+    --clr-neon-rgb: 4,217,255;
     --clr-txt: violet;
+    --clr-txt-rgb: 238,130,238;
   }
 }
 
@@ -284,7 +286,7 @@ body {
   transition-duration: 0.4s;
   transform-origin: top right;
   width: 0;
-  background: var(--clr-neon);
+  background: rgba(var(--clr-txt-rgb), 0.95);
 }
 
 .btn-3{
@@ -300,7 +302,7 @@ body {
 }
 
 .btn-3:hover{
-  box-shadow: -20px 10px 20px var(--clr-neon);
+  box-shadow: -20px 10px 20px var(--clr-txt-rgb);
   top: -15px;
   left: 15px;
   z-index: 22;
@@ -319,5 +321,5 @@ body {
   transition-duration: 0.4s;
   transform-origin: top left;
   width: 0;
-  background: var(--clr-neon);
+  background: rgb(var(--clr-neon-rgb), 0.9);
 }
