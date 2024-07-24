@@ -12,6 +12,7 @@ import Upload from "./db/upload";
 import PersonalLists from "./components/personal_lists";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SelectionScreen from "./components/SelectionScreen";
 
 import { helpTopic } from "@/app/constants";
 
@@ -36,6 +37,9 @@ export default function Home() {
 
   const [showNav, setShowNav] = React.useState<boolean>(false);
   const [delayedShowNav, setDelayedShowNav] = React.useState<boolean>(false);
+
+  const [showForm, setShowForm] = React.useState<boolean>(false);
+  const [showAssist, setShowAssist] = React.useState<boolean>(false);
 
   const UID : string | undefined = user?.uid!
 
@@ -128,8 +132,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex w-full mt-2 p-2  rounded-lg h-100% bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center">
-          <Upload uid={UID} data={data} />
+        <div className="flex w-full mt-2 p-2  rounded-lg  bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center overflow-hidden">
+          {!(showForm || showAssist) && <SelectionScreen setShowForm={setShowForm} setShowAssist={setShowAssist} />}
+          {showForm && <Upload uid={UID} data={data} />}
+          {(showAssist || showForm) && <button onClick={() => {setShowForm(false); setShowAssist(false)}} className="btn">Back</button>}
         </div>
       </main>
       <Footer />
