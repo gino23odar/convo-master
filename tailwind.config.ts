@@ -23,7 +23,10 @@ const config: Config = {
         wiggle: 'wiggle 1s ease-in-out ',
       },
       colors:{
-        neon: `rgb(var(--clr-neon-rgb))`
+        neon: `rgb(var(--clr-neon))`,
+        neonRgb: `rgb(var(--clr-neon-rgb))`, 
+        txtViolet: `rgb(var(--clr-txt))`,
+        txtVioletRgb: `rgb(var(--clr-txt-rgb))`,
       },
     },
   },

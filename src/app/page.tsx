@@ -73,9 +73,10 @@ export default function Home() {
     }
   }, [user,UID]);
 
+  // delay the showNav state to allow the menu to animate out before hiding it
   useEffect(() => {
     if (!showNav) {
-      const timer = setTimeout(() => setDelayedShowNav(false), 150); // Adjust the delay as needed
+      const timer = setTimeout(() => setDelayedShowNav(false), 150);
       return () => clearTimeout(timer);
     } else {
       setDelayedShowNav(true);

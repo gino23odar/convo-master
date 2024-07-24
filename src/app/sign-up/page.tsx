@@ -32,37 +32,48 @@ const SignUp = () => {
     }
   };
 
+  const goToLogin = () => {
+    router.push('/sign-in')
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-500">
-      <div className="bg-gray-900 p-5 rounded-2xl shadow-lg w-96">
-        <h1 className="text-white text-2xl mb-5">Sign Up</h1>
-        <input 
-          type="name" 
-          placeholder="Username" 
-          value={name} 
-          onChange={(e) => setName(e.target.value)} 
-          className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
-        />
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
-        />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
-        />
-        <button 
-          onClick={handleSignUp}
-          className="w-full p-3 bg-blue-600 rounded text-white hover:bg-purple-700"
-        >
-          Sign Up
-        </button>
+    <div className="flex min-h-screen items-center justify-center bg-gray-500">
+      <div className='flex flex-col gap-2'>
+        <div className="flex flex-col bg-gray-900 p-5 rounded-2xl shadow-lg w-48 sm:w-96">
+          <h1 className="text-white text-2xl mb-5">Sign Up</h1>
+          <input 
+            type="name" 
+            placeholder="Username" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+            className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
+          />
+          <input 
+            type="email" 
+            placeholder="Email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
+          />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            className="w-full p-3 mb-4 bg-gray-100 rounded outline-none text-black font-bold placeholder-gray-500"
+          />
+          <button 
+            onClick={handleSignUp}
+            className="w-full p-3 bg-blue-600 rounded text-white hover:bg-neonRgb"
+          >
+            Sign Up
+          </button>
+        </div>
+        <div className='flex sm:w-96 justify-center p-5'>
+          <button onClick={() => goToLogin()} className='rounded bg-txtVioletRgb hover:bg-neonRgb w-full p-3'>
+            Sign-In
+          </button>
+        </div>
       </div>
     </div>
   );
