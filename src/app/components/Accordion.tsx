@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DeleteButton from './DeleteButton';
 
-// interface DataItem {
-//     id: string;
-//     question: string;
-//     topic: string;
-//     answer: string;
-// }
-  
-// type GroupedData = {
-//     [topic: string]: DataItem[];
-// };
-
 // remember to fix this when the data is defined
 type AccordionProps = {
     entry: any[];
@@ -21,28 +10,14 @@ type AccordionProps = {
 const Accordion: React.FC<AccordionProps> = ({ entry, showDelButton }) =>{
     const [activeQuestion, setActiveQuestion] = useState<string | null>(null);
 
-    // const groupByTopic = (list: DataItem[]) => {
-    //     return list.reduce<GroupedData>((acc, item) => {
-    //         (acc[item.topic] = acc[item.topic] || []).push(item);
-    //         return acc;
-    //     }, {})
-    // }
-
-    //const groupedData = groupByTopic(list);
-    //console.log(groupedData);
-
     const handleToggle = (index: string) => {
         setActiveQuestion(activeQuestion === index ? null : index);
     }
-
-    //console.log(activeQuestion)
 
     useEffect(() => {
       setActiveQuestion(null)
     }, [entry])
 
-    // check entry to remove entry from a document
-    console.log(entry)
 
     return(
         <div className='w-full'>

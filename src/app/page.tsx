@@ -98,7 +98,7 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             exit={{ y: -100, transition: { type:'spring', duration: 0.2 } }}
           >
-            <Navbar text={user?.displayName || user?.email!} /> 
+            <Navbar showDelButton={showDelButton} setShowDelButton={setShowDelButton} /> 
             <div className="flex flex-col menu p-3 bg-white bg-opacity-10 rounded-bl-lg rounded-br-lg" onClick={handleClick}>
                 <span></span>
                 <span></span>
@@ -118,6 +118,11 @@ export default function Home() {
               <span></span>
               <span></span>
             </div>
+            <ul className="flex flex-col items-center justify-between p-2 w-full">
+            <li>
+                <h1 className="text-xs sm:text-2xl font-bold text-white text-center break-words">Welcome {user?.displayName || user?.email}!</h1>
+            </li>
+            </ul>
           </motion.div>
         }
       
