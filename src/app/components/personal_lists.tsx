@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton';
 
 interface PersonalListsProps {
     data: any[];
-    showDelButton?: boolean;
+    showDelButton: boolean;
     uid: string;
 }
 
@@ -39,14 +39,14 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data, showDelButton, uid})
                             <div className='m-2' onClick={()=>handleTopic(val)}>
                                 <SpecialButton text={val}/>
                             </div>
-                            {showDelButton && <DeleteButton uid={uid} fieldName={val}/>}
+                            {showDelButton && <DeleteButton id={uid} fieldName={val}/>}
                         </div>
                     ))}
                 </div>
             </Reveal>
             
             <div className='flex flex-row mr-4 mt-1 sm:min-h-96 items-center justify-center'>
-                <Accordion entry={entry}/>
+                <Accordion entry={entry} showDelButton={showDelButton}/>
             </div>
         </div>
     )

@@ -2,10 +2,13 @@ import { doc, deleteDoc, getDocs, where, query, deleteField, updateDoc, collecti
 import { db } from "@/app/firebase/config";
 
 type DeleteButtonProps = {
-    uid: string;
+    id: string;
     fieldName?: string;
+    quest?: boolean;
 }
 
+
+// delete a document by id
 async function deleteById(id: string, collectionName='users') {
     try{
         await deleteDoc(doc(db, collectionName, id));
@@ -16,7 +19,7 @@ async function deleteById(id: string, collectionName='users') {
 }
 
 
-// delete an entry by 
+// delete a list by topic
 async function deleteDocumentsByUidAndTopic(uidVal:string, topicVal:string, collectionName='users'){
     try{
         const q = query(collection(db, collectionName), where("uid", "==", uidVal), where("topic", "==", topicVal));
@@ -40,17 +43,17 @@ async function deleteDocumentsByUidAndTopic(uidVal:string, topicVal:string, coll
 }
 
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({uid, fieldName}) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({id, fieldName, quest=false}) => {
   return (
     <>
-        {fieldName ? 
-            <button onClick={() => deleteDocumentsByUidAndTopic(uid, fieldName)}>
-                {fieldName}
-            </button> 
-            : 
-            <button onClick={() => deleteById(uid)}>
+        {quest ? 
+            <button onClick={() => deleteById(id)}>
                 DeleteButton 
             </button>
+            : 
+            <button onClick={() => deleteDocumentsByUidAndTopic(id, fieldName!)}>
+                {fieldName}
+            </button> 
         }
     </>
   )
