@@ -22,7 +22,7 @@ const Accordion: React.FC<AccordionProps> = ({ entry, showDelButton }) =>{
     return (
         <div className='flex flex-col w-full'>
             {entry && Object.entries(entry).map(([index, entry], arrayIndex, array) => (
-                <div className='flex w-full' key={index} >
+                <div className='flex w-full items-center' key={index} >
                     <button
                         onClick={() => handleToggle(index)}
                         tabIndex={0}

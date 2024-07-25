@@ -2,7 +2,7 @@ import { doc, deleteDoc, getDocs, where, query, deleteField, updateDoc, collecti
 import { db } from "@/app/firebase/config";
 
 import Image from "next/image";
-import { trash32 } from "../assets";
+import trash32 from "/public/trashIcon32.svg"; 
 
 import Reveal from "@/app/utils/Reveal";
 
@@ -52,22 +52,23 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({id, fieldName, quest=false})
   return (
     <>
         {quest ? 
-            
+            <Reveal delayed={0.2} duration={0.5}>
                 <button onClick={() => deleteById(id)}>
                     <Image
                         src={trash32}
                         alt='delete button'
                     />
                 </button>
-            
-            
+            </Reveal>
             : 
-            <button onClick={() => deleteDocumentsByUidAndTopic(id, fieldName!)}>
-                <Image
-                    src={trash32}
-                    alt='delete button'
-                />
-            </button> 
+            <Reveal delayed={0} duration={0.3}>
+                <button onClick={() => deleteDocumentsByUidAndTopic(id, fieldName!)}>
+                    <Image
+                        src={trash32}
+                        alt='delete button'
+                    />
+                </button> 
+            </Reveal>
         }
     </>
   )
