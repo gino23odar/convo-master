@@ -1,6 +1,11 @@
 import { doc, deleteDoc, getDocs, where, query, deleteField, updateDoc, collection, writeBatch } from "firebase/firestore";
 import { db } from "@/app/firebase/config";
 
+import Image from "next/image";
+import { trash32 } from "../assets";
+
+import Reveal from "@/app/utils/Reveal";
+
 type DeleteButtonProps = {
     id: string;
     fieldName?: string;
@@ -47,12 +52,21 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({id, fieldName, quest=false})
   return (
     <>
         {quest ? 
-            <button onClick={() => deleteById(id)}>
-                DeleteButton 
-            </button>
+            
+                <button onClick={() => deleteById(id)}>
+                    <Image
+                        src={trash32}
+                        alt='delete button'
+                    />
+                </button>
+            
+            
             : 
             <button onClick={() => deleteDocumentsByUidAndTopic(id, fieldName!)}>
-                {fieldName}
+                <Image
+                    src={trash32}
+                    alt='delete button'
+                />
             </button> 
         }
     </>

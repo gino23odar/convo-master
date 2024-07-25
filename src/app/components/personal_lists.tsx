@@ -36,7 +36,7 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data, showDelButton, uid})
                 <div className='flex w-full px-4 overflow-auto'>
                     { topics.map((val, index) => (
                         <div key={index} className='flex items-center'>
-                            <div className='m-2' onClick={()=>handleTopic(val)}>
+                            <div className='ml-2' onClick={()=>handleTopic(val)}>
                                 <SpecialButton text={val}/>
                             </div>
                             {showDelButton && <DeleteButton id={uid} fieldName={val}/>}

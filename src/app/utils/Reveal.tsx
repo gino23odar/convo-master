@@ -5,9 +5,10 @@ interface RevealProps {
     children: JSX.Element;
     width?:"fit-content" | "full";
     delayed?: number;
+    duration?: number;
 }
 
-const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed = 1}) => {
+const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed = 1, duration = 1}) => {
     const ref = useRef(null);
     const inView = useInView(ref, {once: true});
 
@@ -29,7 +30,7 @@ const Reveal: React.FC<RevealProps> = ({children, width = "fit-content", delayed
             }}
             initial="start"
             animate={controls}
-            transition ={{ duration: 1, delay: delayed}}
+            transition ={{ duration: duration, delay: delayed}}
         >
             {children}
         </motion.div>
