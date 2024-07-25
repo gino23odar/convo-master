@@ -38,10 +38,12 @@ const Accordion: React.FC<AccordionProps> = ({ entry }) =>{
     useEffect(() => {
       setActiveQuestion(null)
     }, [entry])
-    
+
+    // check entry to remove entry from a document
+    //console.log(entry)
 
     return(
-        <div>
+        <div className='w-full'>
             {
                 entry && Object.entries(entry).map(([index, entry]) => (
                     <button onClick={() => handleToggle(index)} key={index} tabIndex={0} className='first:rounded-t-xl last:rounded-b-xl flex items-center justify-between p-2  mx-2 w-full font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'>

@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Accordion from './Accordion';
 import SpecialButton from './specialButton';
 import Reveal from '@/app/utils/Reveal';
+import DeleteButton from './DeleteButton';
 
 interface PersonalListsProps {
     data: any[];
+    showDelButton?: boolean;
+    uid: string;
 }
 
-const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
+const PersonalLists: React.FC<PersonalListsProps> = ({data, showDelButton, uid}) => {
     const [list, setList] = React.useState<string>('help');
     const [entry, setEntry] = React.useState<string[]>([]);
 
-    // filter out any duplicate topics
+    // filter out any duplicate topics :: try to get topic with id of document
     let topics = Array.from(new Set(data.map((item) => item.topic)));
 
     const handleTopic = (topic: string) => {
@@ -28,18 +31,21 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data}) => {
     }, [list, data])
 
     return (
-        <div>
+        <div className='h-full'>
             <Reveal>
                 <div className='flex w-full px-4 overflow-auto'>
-                    { topics.map((val:string, index) => (
-                        <div key={index} className='m-2' onClick={()=>handleTopic(val)}>
-                            <SpecialButton text={val}/>
+                    { topics.map((val, index) => (
+                        <div key={index} className='flex items-center'>
+                            <div className='m-2' onClick={()=>handleTopic(val)}>
+                                <SpecialButton text={val}/>
+                            </div>
+                            {showDelButton && <DeleteButton uid={uid} fieldName={val}/>}
                         </div>
                     ))}
                 </div>
             </Reveal>
             
-            <div className='mr-4 mt-1'>
+            <div className='flex flex-row mr-4 mt-1 sm:min-h-96 items-center justify-center'>
                 <Accordion entry={entry}/>
             </div>
         </div>

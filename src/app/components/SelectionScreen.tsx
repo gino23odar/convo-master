@@ -22,7 +22,7 @@ const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShow
                 />
                 <div className='flex absolute items-center top-4 left-2 z-10 font-bold bg-black bg-opacity-30 p-1 gap-2 rounded-lg'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  className='rotate-90' xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                     <span className='ml-auto'>Add questions to your list of topics</span>
                 </div>
@@ -39,7 +39,7 @@ const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShow
                 <div className='flex justify-end absolute items-center top-4 right-2 z-10 font-bold bg-black bg-opacity-30 p-1 gap-2 rounded-lg'>
                     <span className='mr-auto'>Get help from AI</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  className='rotate-[270deg]' xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
             </button>

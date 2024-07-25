@@ -41,6 +41,8 @@ export default function Home() {
   const [showForm, setShowForm] = React.useState<boolean>(false);
   const [showAssist, setShowAssist] = React.useState<boolean>(false);
 
+  const [showDelButton, setShowDelButton] = React.useState<boolean>(false);
+
   const UID : string | undefined = user?.uid!
 
   const handleClick = () => {
@@ -122,13 +124,13 @@ export default function Home() {
       <main className="flex flex-col w-full items-center px-2 pb-2">
         <div className="flex flex-col min-h-[45lvh] w-full bg-gradient-to-tl from-transparent to-slate-600 rounded-lg mt-2 h-100%">
           <h1 className="text-black font-bold text-2xl text-center bg-white rounded-lg m-2 h-100% justify- items-center"> Select your personal list:</h1>
-          <div >
+          <div className="h-full">
             {loading ? (
               <p>Loading...</p>
             ) : error ? (
               <p>{error}</p>
             ) : (
-              <PersonalLists data={data} />
+              <PersonalLists data={data} showDelButton={showDelButton} uid={UID}/>
             )}
           </div>
         </div>
