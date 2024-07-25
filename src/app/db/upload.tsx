@@ -28,7 +28,7 @@ async function handleUpload({uid, topic, question, answer}: {uid:string, topic: 
     try{
         const docRef = await addDoc(collection(db, "users"), {
             uid: uid,
-            topic: topic,
+            topic: topic.toLowerCase(),
             question: question,
             answer: answer
         });
@@ -76,6 +76,8 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
         setFilteredQuestions(filteredQs);
     }
 
+    // refactor to update 
+
     useEffect(() => {
         filterQuestions(data, topic, searchQuery);
     }, [data, searchQuery, topic])
@@ -92,7 +94,7 @@ const Upload : React.FC<UploadProps> = ({uid, data}) => {
                                 <option key={index} value={val}>{val}</option>
                             ))}
                         </select>
-                        { !topics.includes(topic.toLowerCase()) ? <input type="text" ref={null} placeholder='Enter New Topic' value={topic == 'newTopic'? 'Enter new Topic' : topic} onChange={(e) => setTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" /> : null }
+                        { !topics.includes(topic) ? <input type="text" ref={null} placeholder='Enter New Topic' value={topic == 'newTopic'? '' : topic} onChange={(e) => setTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ring-blue-400 focus:ring" /> : null }
                     </div>
 
                     <label htmlFor="question" className="block text-gray-700 text-sm font-bold mb-2">Question</label>
