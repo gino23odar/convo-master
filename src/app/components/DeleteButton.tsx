@@ -2,7 +2,7 @@ import { doc, deleteDoc, getDocs, where, query, deleteField, updateDoc, collecti
 import { db } from "@/app/firebase/config";
 
 import Image from "next/image";
-import trash32 from "/public/trashIcon32.svg"; 
+import trash32 from "../../../public/trashIcon32.svg"; 
 
 import Reveal from "@/app/utils/Reveal";
 

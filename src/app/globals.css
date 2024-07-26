@@ -323,3 +323,11 @@ body {
   width: 0;
   background: rgb(var(--clr-neon-rgb), 0.9);
 }
+
+.filter-neon{
+  filter: invert(59%) sepia(65%) saturate(920%) hue-rotate(147deg) brightness(105%) contrast(100%);
+}
+
+.filter-violet{
+  filter: invert(14%) sepia(87%) saturate(5677%) hue-rotate(295deg) brightness(83%) contrast(102%);
+}

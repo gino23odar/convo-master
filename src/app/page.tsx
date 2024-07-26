@@ -13,6 +13,7 @@ import PersonalLists from "./components/personal_lists";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SelectionScreen from "./components/SelectionScreen";
+import fastArrow from "../../public/fastArrow.svg";
 
 import { helpTopic } from "@/app/constants";
 
@@ -143,7 +144,14 @@ export default function Home() {
         <div className="flex w-full mt-2 p-2  rounded-lg  bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center overflow-hidden">
           {!(showForm || showAssist) && <SelectionScreen setShowForm={setShowForm} setShowAssist={setShowAssist} />}
           {showForm && <Upload uid={UID} data={data} />}
-          {(showAssist || showForm) && <button onClick={() => {setShowForm(false); setShowAssist(false)}} className="btn">Back</button>}
+          {(showAssist || showForm) && <button onClick={() => {setShowForm(false); setShowAssist(false)}} className={`btn ${showForm ? 'filter-violet' : 'rotate-180 filter-neon'} `}>
+            <Image 
+              src={fastArrow}
+              alt='back'
+              width={50}
+              height={50}
+            />
+          </button>}
         </div>
       </main>
       <Footer />
