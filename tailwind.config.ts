@@ -28,6 +28,10 @@ const config: Config = {
         txtViolet: `rgb(var(--clr-txt))`,
         txtVioletRgb: `rgb(var(--clr-txt-rgb))`,
       },
+      screens:{
+        'old': '350px',
+
+      },
     },
   },
   plugins: [],
