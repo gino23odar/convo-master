@@ -8,8 +8,8 @@ import logo from '../../../public/logo1024.png'
 const FooterLink = () =>{
   return (
     <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className='flex flex-col items-center'>
           <h2 className="font-bold text-xl mb-4">About Us</h2>
           <ul>
             <li><a href="#" className="text-gray-400 hover:text-gray-300">Lorem ipsum dolor sit amet</a></li>
@@ -19,7 +19,7 @@ const FooterLink = () =>{
             <li><a href="#" className="text-gray-400 hover:text-gray-300">Dolore magna aliqua</a></li>
           </ul>
         </div>
-        <div>
+        <div className='flex flex-col items-center'>
           <h2 className="font-bold text-xl mb-4">Services</h2>
           <ul>
             <li><a href="#" className="text-gray-400 hover:text-gray-300">Ut enim ad minim veniam</a></li>
@@ -29,17 +29,7 @@ const FooterLink = () =>{
             <li><a href="#" className="text-gray-400 hover:text-gray-300">Consequat</a></li>
           </ul>
         </div>
-        <div>
-          <h2 className="font-bold text-xl mb-4">Contact</h2>
-          <ul>
-            <li><a href="#" className="text-gray-400 hover:text-gray-300">Duis aute irure dolor</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-gray-300">In reprehenderit in</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-gray-300">Voluptate velit esse</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-gray-300">Cillum dolore eu fugiat</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-gray-300">Nulla pariatur</a></li>
-          </ul>
-        </div>
-        <div>
+        <div className='flex flex-col items-center'>
           <h2 className="font-bold text-xl mb-4">Legal</h2>
           <ul>
             <li><a href="#" className="text-gray-400 hover:text-gray-300">Excepteur sint occaecat</a></li>
@@ -70,7 +60,7 @@ const Footer = () => {
                 </h2>
               </div>
               
-              <div className='flex flex-grow justify-center p-6'>
+              <div className='flex flex-grow justify-between 2xl:justify-end p-6'>
                 <FooterLink />
               </div>
               

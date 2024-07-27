@@ -30,7 +30,6 @@ const config: Config = {
       },
       screens:{
         'old': '350px',
-
       },
     },
   },
