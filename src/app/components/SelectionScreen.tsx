@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
+
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+
 import aiPicture from '../../../public/aiButton.jpg';
 import questPic from '../../../public/questiondb.jpg';
 
+gsap.registerPlugin(useGSAP);
 
 type SelectionScreenProps = {
     setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,23 +16,41 @@ type SelectionScreenProps = {
 }
 
 const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShowForm}) => {
+    const formContainer = useRef<HTMLDivElement>(null);
+
+    const { contextSafe } = useGSAP({ scope: formContainer });
+
+    const onClickGood = contextSafe(() => {
+        gsap.to('.btn-form', { duration:.2, x: -800, scale:1.02, ease:"power4.inOut" }); // CHANGE THIS
+    });
+
+    const setDelayedShowForm = () =>{
+        setTimeout(() => {
+            setShowForm(true);
+        }, 200);
+    }
+
+
   return (
     <div className='flex gap-1'>
-        <div className='flex w-full btn-2 rounded-l-2xl z-20'>
-            <button onClick={() => setShowForm(true)} className='btn'>
-                <Image 
-                    src={questPic}
-                    alt='questionPicture'
-                    sizes="500px"
-                    className='w-full h-full rounded-l-3xl block'
-                />
-                <div className='flex absolute items-center top-4 left-2 z-10 font-bold bg-black bg-opacity-30 p-1 gap-2 rounded-lg'>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  className='rotate-90' xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className='ml-auto'>Add questions to your list of topics</span>
-                </div>
-            </button>
+        <div className='flex w-full btn-2 rounded-l-2xl z-20' ref={formContainer}>
+            
+                <button onClick={() => { onClickGood(); setDelayedShowForm()}} className='btn-form'>
+                    <Image 
+                        src={questPic}
+                        alt='questionPicture'
+                        sizes="500px"
+                        className='w-full h-full rounded-l-3xl block'
+                    />
+                    <div className='flex absolute items-center top-4 left-2 z-10 font-bold bg-black bg-opacity-30 p-1 gap-2 rounded-lg'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  className='rotate-90' xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L12 22M12 22L5 15M12 22L19 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span className='ml-auto'>Add questions to your list of topics</span>
+                    </div>
+                </button>
+            
+            
         </div>
         <div className='flex w-full h-full btn-3 rounded-r-2xl z-20'>
             <button onClick={() => setShowAssist(true)} className='btn'>

@@ -1,12 +1,16 @@
 'use client'
 import Image from "next/image";
-import React, { useEffect }  from "react";
+import React, { use, useEffect, useRef }  from "react";
+import { useRouter } from "next/navigation";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/app/firebase/config";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import { useRouter } from "next/navigation";
+
 import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import Upload from "./db/upload";
 import PersonalLists from "./components/personal_lists";
@@ -85,6 +89,16 @@ export default function Home() {
       setDelayedShowNav(true);
     }
   }, [showNav]);
+
+  gsap.registerPlugin(useGSAP);
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() =>{
+    if(showForm){
+      gsap.from(".formBox", { duration: 1,  x: -1000 });
+    }
+    
+  } , [showForm]);
   
   return (
     <>
@@ -141,9 +155,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex w-full mt-2 p-2  rounded-lg  bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center overflow-hidden">
+        <div className="container flex w-full mt-2 rounded-lg  bg-gradient-to-tr from-slate-600 to-transparent items-center justify-center overflow-hidden" ref={container}>
           {!(showForm || showAssist) && <SelectionScreen setShowForm={setShowForm} setShowAssist={setShowAssist} />}
-          {showForm && <Upload uid={UID} data={data} />}
+          {showForm && <div className="formBox"> <Upload uid={UID} data={data} /> </div>}
           {(showAssist || showForm) && <button onClick={() => {setShowForm(false); setShowAssist(false)}} className={`btn ${showForm ? 'filter-violet' : 'rotate-180 filter-neon'} `}>
             <Image 
               src={fastArrow}
