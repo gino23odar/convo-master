@@ -45,7 +45,7 @@ const PersonalLists: React.FC<PersonalListsProps> = ({data, showDelButton, uid})
                 </div>
             </Reveal>
             
-            <div className='flex flex-row mr-4 mt-1 sm:min-h-96 items-center justify-center'>
+            <div className='flex flex-row mx-4 mt-1 sm:min-h-96 items-center justify-center'>
                 <Accordion entry={entry} showDelButton={showDelButton}/>
             </div>
         </div>

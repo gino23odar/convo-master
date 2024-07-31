@@ -20,8 +20,12 @@ const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShow
 
     const { contextSafe } = useGSAP({ scope: formContainer });
 
-    const onClickGood = contextSafe(() => {
+    const onClickLeft = contextSafe(() => {
         gsap.to('.btn-form', { duration:.2, x: -800, scale:1.02, ease:"power4.inOut" }); // CHANGE THIS
+    });
+
+    const onClickRight = contextSafe(() => {
+        gsap.to('.btn', { duration:.2, x: 800, scale:1.02, ease:"power4.inOut" }); // CHANGE THIS
     });
 
     const setDelayedShowForm = () =>{
@@ -30,12 +34,17 @@ const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShow
         }, 200);
     }
 
+    const setDelayedShowAssist = () =>{
+        setTimeout(() => {
+            setShowAssist(true);
+        }, 200);
+    }
+
 
   return (
-    <div className='flex gap-1'>
-        <div className='flex w-full btn-2 rounded-l-2xl z-20' ref={formContainer}>
-            
-                <button onClick={() => { onClickGood(); setDelayedShowForm()}} className='btn-form'>
+    <div className='flex gap-1' ref={formContainer}>
+        <div className='flex w-full btn-2 rounded-l-2xl z-20' >  
+                <button onClick={() => { onClickLeft(); setDelayedShowForm()}} className='btn-form'>
                     <Image 
                         src={questPic}
                         alt='questionPicture'
@@ -52,8 +61,8 @@ const SelectionScreen: React.FC<SelectionScreenProps> = ({setShowAssist, setShow
             
             
         </div>
-        <div className='flex w-full h-full btn-3 rounded-r-2xl z-20'>
-            <button onClick={() => setShowAssist(true)} className='btn'>
+        <div className='flex w-full h-full btn-3 rounded-r-2xl z-20' >
+            <button onClick={() => {onClickRight(); setDelayedShowAssist()}} className='btn'>
                 <Image 
                     src={aiPicture}
                     alt='aiButton'

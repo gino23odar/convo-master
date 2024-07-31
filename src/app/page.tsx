@@ -18,6 +18,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SelectionScreen from "./components/SelectionScreen";
 import fastArrow from "../../public/fastArrow.svg";
+import AIassistant from "./components/AIassistant";
 
 import { helpTopic } from "@/app/constants";
 
@@ -97,8 +98,12 @@ export default function Home() {
     if(showForm){
       gsap.from(".formBox", { duration: 1,  x: -1000 });
     }
+
+    if(showAssist){
+      gsap.from(".formAssist", { duration: 1,  x: 1000 });
+    }
     
-  } , [showForm]);
+  } , [showForm, showAssist]);
   
   return (
     <>
@@ -166,6 +171,7 @@ export default function Home() {
               height={50}
             />
           </button>}
+          {showAssist && <div className="formAssist"> <AIassistant /> </div>}
         </div>
       </main>
       <Footer />
