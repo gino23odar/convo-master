@@ -17,7 +17,6 @@ import PersonalLists from "./components/personal_lists";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SelectionScreen from "./components/SelectionScreen";
-import fastArrow from "../../public/fastArrow.svg";
 import AIassistant from "./components/AIassistant";
 
 import { helpTopic } from "@/app/constants";
@@ -165,7 +164,7 @@ export default function Home() {
           {showForm && <div className="formBox"> <Upload uid={UID} data={data} /> </div>}
           {(showAssist || showForm) && <button onClick={() => {setShowForm(false); setShowAssist(false)}} className={`btn ${showForm ? 'filter-violet' : 'rotate-180 filter-neon'} `}>
             <Image 
-              src={fastArrow}
+              src='fastArrow.svg'
               alt='back'
               width={50}
               height={50}
